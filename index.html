@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Power Automate Comparison Table</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: #ffffff;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 24px;
+      font-size: 2rem;
+      font-weight: 700;
+    }
+
+    h2 {
+      text-align: center;
+      margin: 40px 0 20px;
+      font-size: 1.6rem;
+      font-weight: 700;
+    }
+
+    .subtitle {
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto 30px;
+      color: #cbd5e1;
+      line-height: 1.6;
+      font-size: 1rem;
+    }
+
+    .table-wrapper,
+    .section-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      overflow-x: auto;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 18px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+      padding: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 900px;
+    }
+
+    thead {
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    thead th {
+      padding: 20px;
+      text-align: left;
+      font-size: 1rem;
+      letter-spacing: 0.5px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    tbody tr {
+      transition: background 0.3s ease;
+    }
+
+    tbody tr:hover {
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    tbody td {
+      padding: 18px 20px;
+      vertical-align: top;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 0.96rem;
+      line-height: 1.5;
+    }
+
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    .feature {
+      font-weight: 600;
+      color: #f8fafc;
+      width: 42%;
+    }
+
+    .standard {
+      width: 29%;
+      color: #fca5a5;
+      font-weight: 500;
+    }
+
+    .premium {
+      width: 29%;
+      color: #86efac;
+      font-weight: 500;
+    }
+
+    .yes {
+      color: #4ade80;
+      font-weight: bold;
+    }
+
+    .no {
+      color: #f87171;
+      font-weight: bold;
+    }
+
+    .limited {
+      color: #4ade80;
+      font-weight: bold;
+    }
+
+    /* Cards */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+      margin-top: 10px;
+    }
+
+    .action-card {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 14px;
+      padding: 18px;
+      position: relative;
+      transition: 0.3s ease;
+    }
+
+    .action-card h3 {
+      font-size: 1rem;
+      margin-bottom: 10px;
+      color: #ffffff;
+    }
+
+    .action-card p {
+      font-size: 0.94rem;
+      line-height: 1.5;
+      color: #cbd5e1;
+    }
+
+    .tag {
+      display: inline-block;
+      margin-bottom: 10px;
+      padding: 6px 10px;
+      font-size: 0.8rem;
+      border-radius: 999px;
+      background: rgba(148, 163, 184, 0.15);
+      color: #cbd5e1;
+      border: 1px solid rgba(148, 163, 184, 0.25);
+    }
+
+    .premium-card {
+      border: 1px solid rgba(74, 222, 128, 0.45);
+      box-shadow: 0 0 0 1px rgba(74, 222, 128, 0.15), 0 0 18px rgba(74, 222, 128, 0.22);
+    }
+
+    .premium-card:hover {
+      box-shadow: 0 0 0 1px rgba(74, 222, 128, 0.25), 0 0 24px rgba(74, 222, 128, 0.32);
+      transform: translateY(-3px);
+    }
+
+    .premium-tag {
+      background: rgba(74, 222, 128, 0.15);
+      color: #86efac;
+      border: 1px solid rgba(74, 222, 128, 0.35);
+    }
+
+    .icon {
+      font-size: 1.3rem;
+      margin-right: 6px;
+      vertical-align: middle;
+    }
+
+    .premium-badge {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      font-size: 0.75rem;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: rgba(74, 222, 128, 0.16);
+      color: #86efac;
+      border: 1px solid rgba(74, 222, 128, 0.35);
+      font-weight: bold;
+    }
+
+    /* Diagram */
+    .diagram {
+      margin-top: 25px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .step-box {
+      min-width: 170px;
+      text-align: center;
+      padding: 16px 14px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      font-size: 0.94rem;
+      line-height: 1.4;
+    }
+
+    .step-box.premium-step {
+      border: 1px solid rgba(74, 222, 128, 0.45);
+      box-shadow: 0 0 14px rgba(74, 222, 128, 0.18);
+    }
+
+    .step-label {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 0.75rem;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      color: #cbd5e1;
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .step-label.premium {
+      background: rgba(74, 222, 128, 0.15);
+      color: #86efac;
+      border: 1px solid rgba(74, 222, 128, 0.35);
+    }
+
+    .arrow {
+      font-size: 1.5rem;
+      color: #cbd5e1;
+      font-weight: bold;
+    }
+
+    .branch-wrapper {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .branch-box {
+      min-width: 240px;
+      text-align: center;
+      padding: 18px;
+      border-radius: 12px;
+      font-size: 0.94rem;
+      line-height: 1.5;
+    }
+
+    .branch-success {
+      background: rgba(74, 222, 128, 0.12);
+      border: 1px solid rgba(74, 222, 128, 0.4);
+      color: #bbf7d0;
+    }
+
+    .branch-duplicate {
+      background: rgba(248, 113, 113, 0.12);
+      border: 1px solid rgba(248, 113, 113, 0.4);
+      color: #fecaca;
+    }
+
+    .small-note {
+      text-align: center;
+      margin-top: 18px;
+      color: #cbd5e1;
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+
+    .legend {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+      margin-bottom: 18px;
+    }
+
+    .legend-item {
+      font-size: 0.9rem;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: #cbd5e1;
+    }
+
+    .legend-item.premium {
+      color: #86efac;
+      border-color: rgba(74, 222, 128, 0.35);
+      box-shadow: 0 0 10px rgba(74, 222, 128, 0.15);
+    }
+
+    /* Tool pricing section */
+    .tool-pricing-section {
+      padding: 70px 20px;
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: #fff;
+    }
+
+    .tool-pricing-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .tool-pricing-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .tool-pricing-header h2 {
+      font-size: 2rem;
+      margin-bottom: 12px;
+    }
+
+    .tool-pricing-header p {
+      max-width: 800px;
+      margin: 0 auto;
+      color: #cbd5e1;
+      line-height: 1.6;
+    }
+
+    .tool-pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .tool-card {
+      position: relative;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 18px;
+      padding: 24px 20px;
+      backdrop-filter: blur(10px);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .tool-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .tool-card.required:hover {
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.18);
+    }
+
+    .tool-card.premium {
+      border: 1px solid rgba(74, 222, 128, 0.4);
+      box-shadow: 0 0 18px rgba(74, 222, 128, 0.14);
+    }
+
+    .tool-card.premium:hover {
+      box-shadow: 0 0 26px rgba(74, 222, 128, 0.24);
+    }
+
+    .tool-card.optional:hover {
+      box-shadow: 0 0 20px rgba(168, 85, 247, 0.18);
+    }
+
+    .tool-card.included:hover {
+      box-shadow: 0 0 20px rgba(245, 158, 11, 0.18);
+    }
+
+    .tool-badge {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      font-size: 0.72rem;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(59, 130, 246, 0.14);
+      color: #93c5fd;
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      font-weight: bold;
+    }
+
+    .optional-badge {
+      background: rgba(168, 85, 247, 0.14);
+      color: #d8b4fe;
+      border-color: rgba(168, 85, 247, 0.3);
+    }
+
+    .included-badge {
+      background: rgba(245, 158, 11, 0.14);
+      color: #fcd34d;
+      border-color: rgba(245, 158, 11, 0.3);
+    }
+
+    .tool-icon {
+      font-size: 2rem;
+      margin-bottom: 14px;
+    }
+
+    .tool-card h3 {
+      font-size: 1.15rem;
+      margin-bottom: 10px;
+    }
+
+    .tool-purpose {
+      color: #cbd5e1;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      margin-bottom: 16px;
+      min-height: 68px;
+    }
+
+    .tool-price {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: #ffffff;
+    }
+
+    .tool-card ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .tool-card ul li {
+      color: #cbd5e1;
+      font-size: 0.92rem;
+      margin-bottom: 8px;
+      position: relative;
+      padding-left: 16px;
+    }
+
+    .tool-card ul li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: #60a5fa;
+    }
+
+    .architecture-box {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 18px;
+      padding: 28px 20px;
+      text-align: center;
+    }
+
+    .architecture-box h3 {
+      margin-bottom: 20px;
+      font-size: 1.3rem;
+    }
+
+    .architecture-flow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .flow-item {
+      padding: 12px 18px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      font-weight: 600;
+    }
+
+    .premium-flow {
+      border-color: rgba(74, 222, 128, 0.4);
+      box-shadow: 0 0 14px rgba(74, 222, 128, 0.15);
+    }
+
+    .optional-flow {
+      border-color: rgba(168, 85, 247, 0.35);
+    }
+
+    .architecture-note {
+      color: #cbd5e1;
+      max-width: 850px;
+      margin: 0 auto;
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+
+    /* Comparison tables section */
+    .comparison-tables-section {
+      padding: 70px 20px;
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: #fff;
+    }
+
+    .comparison-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .comparison-header {
+      text-align: center;
+      margin-bottom: 35px;
+    }
+
+    .comparison-header h2 {
+      font-size: 2rem;
+      margin-bottom: 12px;
+    }
+
+    .comparison-header p {
+      max-width: 850px;
+      margin: 0 auto;
+      color: #cbd5e1;
+      line-height: 1.6;
+    }
+
+    .comparison-block {
+      margin-bottom: 28px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 18px;
+      padding: 22px;
+      backdrop-filter: blur(10px);
+    }
+
+    .comparison-block h3 {
+      margin-bottom: 18px;
+      font-size: 1.2rem;
+    }
+
+    .comparison-table-wrapper {
+      overflow-x: auto;
+    }
+
+    .comparison-table {
+      width: 100%;
+      min-width: 820px;
+      border-collapse: collapse;
+    }
+
+    .comparison-table thead {
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+      padding: 15px 16px;
+      text-align: left;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 0.95rem;
+      line-height: 1.45;
+    }
+
+    .comparison-table tbody tr:hover {
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .comparison-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    .comparison-summary-box {
+      margin-top: 30px;
+      padding: 24px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      text-align: center;
+    }
+
+    .comparison-summary-box h3 {
+      margin-bottom: 12px;
+      font-size: 1.2rem;
+    }
+
+    .comparison-summary-box p {
+      max-width: 900px;
+      margin: 0 auto;
+      color: #cbd5e1;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      h2 {
+        font-size: 1.25rem;
+      }
+
+      .subtitle {
+        font-size: 0.95rem;
+      }
+
+      thead th,
+      tbody td {
+        padding: 14px;
+        font-size: 0.9rem;
+      }
+
+      .arrow {
+        display: none;
+      }
+
+      .diagram {
+        flex-direction: column;
+      }
+
+      .tool-pricing-header h2,
+      .comparison-header h2 {
+        font-size: 1.6rem;
+      }
+
+      .tool-purpose {
+        min-height: auto;
+      }
+
+      .architecture-flow {
+        flex-direction: column;
+      }
+
+      .comparison-block {
+        padding: 18px;
+      }
+
+      .comparison-table th,
+      .comparison-table td {
+        font-size: 0.9rem;
+        padding: 13px 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Power Automate Standard vs Premium</h1>
+  <p class="subtitle">
+    Comparison of SharePoint, Power Automate, and Azure SQL workflow capabilities for duplicate handling and end-to-end automation.
+  </p>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Feature / Requirement</th>
+          <th>Power Automate (Standard)</th>
+          <th>Power Automate Premium</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="feature">Trigger: File uploaded in SharePoint</td>
+          <td class="standard"><span class="yes">✅ Yes</span></td>
+          <td class="premium"><span class="yes">✅ Yes</span></td>
+        </tr>
+        <tr>
+          <td class="feature">Move files to another SharePoint folder (PK Duplicates)</td>
+          <td class="standard"><span class="yes">✅ Yes</span></td>
+          <td class="premium"><span class="yes">✅ Yes</span></td>
+        </tr>
+        <tr>
+          <td class="feature">Basic conditions (IF logic)</td>
+          <td class="standard"><span class="yes">✅ Yes</span></td>
+          <td class="premium"><span class="yes">✅ Yes</span></td>
+        </tr>
+        <tr>
+          <td class="feature">Loop through data (Apply to each)</td>
+          <td class="standard"><span class="yes">✅ Yes</span></td>
+          <td class="premium"><span class="yes">✅ Yes</span></td>
+        </tr>
+        <tr>
+          <td class="feature">Connect to Azure SQL Database</td>
+          <td class="standard"><span class="no">❌ NOT allowed</span></td>
+          <td class="premium"><span class="yes">✅ FULL support</span></td>
+        </tr>
+        <tr>
+          <td class="feature">Run SQL queries (check duplicates)</td>
+          <td class="standard"><span class="no">❌</span></td>
+          <td class="premium"><span class="yes">✅</span></td>
+        </tr>
+        <tr>
+          <td class="feature">Insert data into Azure SQL</td>
+          <td class="standard"><span class="no">❌</span></td>
+          <td class="premium"><span class="yes">✅</span></td>
+        </tr>
+        <tr>
+          <td class="feature">Use HTTP / call your API</td>
+          <td class="standard"><span class="no">❌</span></td>
+          <td class="premium"><span class="yes">✅</span></td>
+        </tr>
+        <tr>
+          <td class="feature">Advanced data processing</td>
+          <td class="standard"><span class="limited">⚠️ Limited</span></td>
+          <td class="premium"><span class="yes">✅ Full capability</span></td>
+        </tr>
+        <tr>
+          <td class="feature">Scalability (production-ready)</td>
+          <td class="standard"><span class="no">❌ Not suitable</span></td>
+          <td class="premium"><span class="yes">✅ Yes</span></td>
+        </tr>
+        <tr>
+          <td class="feature">Duplicate detection via database</td>
+          <td class="standard"><span class="no">❌ Impossible</span></td>
+          <td class="premium"><span class="yes">✅ Fully possible</span></td>
+        </tr>
+        <tr>
+          <td class="feature">End-to-end automation (SharePoint → Azure)</td>
+          <td class="standard"><span class="no">❌ Broken flow</span></td>
+          <td class="premium"><span class="yes">✅ Complete pipeline</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+<!-- =========================
+     EXTRA COMPARISON TABLES
+========================= -->
+<section class="comparison-tables-section">
+  <div class="comparison-container">
+
+    <div class="comparison-header">
+      <h2>Software Comparison Tables</h2>
+      <p>
+        These tables show which versions are needed for this project and which ones
+        are not needed.
+      </p>
+    </div>
+
+    <!-- AZURE SQL TABLE -->
+    <div class="comparison-block">
+      <h3>Azure SQL Database Table</h3>
+      <div class="comparison-table-wrapper">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>Azure SQL Database</th>
+              <th>Needed for This Project?</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Store clean uploaded data</td>
+              <td class="yes">✅ Yes</td>
+              <td class="yes">✅ Needed</td>
+            </tr>
+            <tr>
+              <td>Check duplicates against database</td>
+              <td class="yes">✅ Yes</td>
+              <td class="yes">✅ Needed</td>
+            </tr>
+            <tr>
+              <td>Works with Power Automate Premium</td>
+              <td class="yes">✅ Yes</td>
+              <td class="yes">✅ Needed</td>
+            </tr>
+            <tr>
+              <td>Needed if storing structured data in Azure</td>
+              <td class="yes">✅ Yes</td>
+              <td class="yes">✅ Needed</td>
+            </tr>
+            <tr>
+              <td>Premium or Pro version required?</td>
+              <td class="no">❌ No separate Pro version</td>
+              <td class="yes">✅ Standard E3 Azure SQL is enough</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+<!-- POWER BI TABLE -->
+<div class="comparison-block">
+  <h3>Power BI Free vs Power BI Pro</h3>
+  <div class="comparison-table-wrapper">
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>Power BI Free</th>
+          <th>Power BI Pro</th>
+          <th>Needed for This Project?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Create personal reports</td>
+          <td class="yes">✅ Yes</td>
+          <td class="yes">✅ Yes</td>
+          <td class="yes">✅ Pro Required</td>
+        </tr>
+        <tr>
+          <td>Share reports with team</td>
+          <td class="no">❌ No</td>
+          <td class="yes">✅ Yes</td>
+          <td class="yes">✅ Pro Required</td>
+        </tr>
+        <tr>
+          <td>Collaboration across organisation</td>
+          <td class="no">❌ No</td>
+          <td class="yes">✅ Yes</td>
+          <td class="yes">✅ Pro Required</td>
+        </tr>
+        <tr>
+          <td>Dashboard layer for management</td>
+          <td class="limited">⚠️ Limited</td>
+          <td class="yes">✅ Yes</td>
+          <td class="yes">✅ Pro Required</td>
+        </tr>
+        <tr>
+          <td>Which one should be used?</td>
+          <td class="no">❌ Not suitable</td>
+          <td class="yes">✅ Power BI Pro</td>
+          <td class="yes">✅ Required</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+    <!-- SHAREPOINT TABLE -->
+    <div class="comparison-block">
+      <h3>SharePoint vs SharePoint Premium</h3>
+      <div class="comparison-table-wrapper">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>SharePoint</th>
+              <th>SharePoint Premium</th>
+              <th>Needed for This Project?</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>File upload folder</td>
+              <td class="yes">✅ Yes</td>
+              <td class="yes">✅ Yes</td>
+              <td class="yes">✅ SharePoint needed</td>
+            </tr>
+            <tr>
+              <td>Duplicate file folder (PK Duplicates)</td>
+              <td class="yes">✅ Yes</td>
+              <td class="yes">✅ Yes</td>
+              <td class="yes">✅ SharePoint needed</td>
+            </tr>
+            <tr>
+              <td>Works with Power Automate trigger</td>
+              <td class="yes">✅ Yes</td>
+              <td class="yes">✅ Yes</td>
+              <td class="yes">✅ SharePoint needed</td>
+            </tr>
+            <tr>
+              <td>Advanced content governance / AI content tools</td>
+              <td class="no">❌ No</td>
+              <td class="yes">✅ Yes</td>
+              <td class="no">❌ Not needed for this project</td>
+            </tr>
+            <tr>
+              <td>Which one should be used?</td>
+              <td class="yes">✅ Standard SharePoint is enough</td>
+              <td class="limited">⚠️ Extra advanced features only</td>
+              <td class="yes">✅ SharePoint needed / ❌ Premium not needed</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .comparison-tables-section {
+    padding: 70px 20px;
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    color: #fff;
+  }
+
+  .comparison-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .comparison-header {
+    text-align: center;
+    margin-bottom: 35px;
+  }
+
+  .comparison-header h2 {
+    font-size: 2rem;
+    margin-bottom: 12px;
+  }
+
+  .comparison-header p {
+    max-width: 850px;
+    margin: 0 auto;
+    color: #cbd5e1;
+    line-height: 1.6;
+  }
+
+  .comparison-block {
+    margin-bottom: 28px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 18px;
+    padding: 22px;
+    backdrop-filter: blur(10px);
+  }
+
+  .comparison-block h3 {
+    margin-bottom: 18px;
+    font-size: 1.2rem;
+    color: #ffffff;
+  }
+
+  .comparison-table-wrapper {
+    overflow-x: auto;
+  }
+
+  .comparison-table {
+    width: 100%;
+    min-width: 860px;
+    border-collapse: collapse;
+  }
+
+  .comparison-table thead {
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .comparison-table th,
+  .comparison-table td {
+    padding: 15px 16px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    font-size: 0.95rem;
+    line-height: 1.45;
+  }
+
+  .comparison-table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  .comparison-table tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  .yes {
+    color: #4ade80;
+    font-weight: bold;
+  }
+
+  .no {
+    color: #f87171;
+    font-weight: bold;
+  }
+
+  .limited {
+    color: #facc15;
+    font-weight: bold;
+  }
+
+  @media (max-width: 768px) {
+    .comparison-header h2 {
+      font-size: 1.5rem;
+    }
+
+    .comparison-block {
+      padding: 18px;
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+      font-size: 0.9rem;
+      padding: 13px 12px;
+    }
+  }
+  
+</style>
+
+
+<!-- =========================
+     FINAL COST TABLE (ALL INCLUDED)
+========================= -->
+<section class="cost-section">
+  <div class="cost-container">
+
+    <h2>Full Project Cost (All Tools Included)</h2>
+    <p class="cost-subtitle">
+      This is the complete monthly cost for the system including SharePoint,
+      Power Automate Premium, Azure SQL, and Power BI Pro.
+    </p>
+
+    <div class="cost-table-wrapper">
+      <table class="cost-table">
+        <thead>
+          <tr>
+            <th>Software / Tool</th>
+            <th>Included in E3?</th>
+            <th>Required?</th>
+            <th>Price (USD)</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>Microsoft 365 E3</td>
+            <td class="yes">—</td>
+            <td class="yes">✅ Required</td>
+            <td>$23.00</td>
+          </tr>
+
+          <tr>
+            <td>SharePoint</td>
+            <td class="yes">✅ Yes</td>
+            <td class="yes">✅ Required</td>
+            <td>$0.00</td>
+          </tr>
+
+          <tr>
+            <td>Power Automate Premium</td>
+            <td class="no">❌ No</td>
+            <td class="yes">✅ Required</td>
+            <td>$15.00</td>
+          </tr>
+
+          <tr>
+            <td>Azure SQL Database</td>
+            <td class="no">❌ No</td>
+            <td class="yes">✅ Required</td>
+            <td>$0.00</td>
+          </tr>
+
+          <tr>
+            <td>Power BI Pro</td>
+            <td class="no">❌ No</td>
+            <td class="yes">✅ Required</td>
+            <td>$14.00</td>
+          </tr>
+        </tbody>
+
+        <tfoot>
+          <tr class="total-row">
+            <td colspan="3"><strong>Total (Per User / Month)</strong></td>
+            <td><strong>$52.00</strong></td>
+          </tr>
+
+          <tr class="vat-row">
+            <td colspan="3"><strong>Total with VAT (15%)</strong></td>
+            <td><strong>$59.80</strong></td>
+          </tr>
+        </tfoot>
+
+      </table>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .cost-section {
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    color: #fff;
+  }
+
+  .cost-container {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .cost-subtitle {
+    margin-bottom: 30px;
+    color: #cbd5e1;
+  }
+
+  .cost-table-wrapper {
+    overflow-x: auto;
+  }
+
+  .cost-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .cost-table th,
+  .cost-table td {
+    padding: 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    font-size: 0.95rem;
+  }
+
+  .cost-table thead {
+    background: rgba(255,255,255,0.08);
+  }
+
+  .cost-table tbody tr:hover {
+    background: rgba(255,255,255,0.04);
+  }
+
+  .total-row {
+    background: rgba(74, 222, 128, 0.15);
+    color: #86efac;
+    font-size: 1.05rem;
+  }
+
+  .vat-row {
+    background: rgba(59, 130, 246, 0.15);
+    color: #93c5fd;
+  }
+
+  .yes {
+    color: #4ade80;
+    font-weight: bold;
+  }
+
+  .no {
+    color: #f87171;
+    font-weight: bold;
+  }
+</style>
+<section class="comparison-tables-section">
+    <div class="comparison-container">
+      <div class="comparison-header">
+        <h2>What Is Included in E3 vs What Needs Extra Licensing</h2>
+        <p>
+          This section shows which tools are already covered by Microsoft 365 E3
+          and which ones need to be purchased separately for this project.
+        </p>
+      </div>
+
+      <div class="comparison-block">
+        <h3>Included in Microsoft 365 E3 vs Extra Cost Required</h3>
+        <div class="comparison-table-wrapper">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>Tool / Service</th>
+                <th>Included in E3</th>
+                <th>Extra Cost Needed</th>
+                <th>Needed for This Project?</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>SharePoint</td>
+                <td class="yes">✅ Yes</td>
+                <td class="no">❌ No</td>
+                <td class="yes">✅ Yes</td>
+              </tr>
+ 
+              <tr>
+                <td>Power Automate Premium</td>
+                <td class="no">❌ No</td>
+                <td class="yes">✅ Yes</td>
+                <td class="yes">✅ Yes</td>
+              </tr>
+              <tr>
+                <td>Azure SQL Database</td>
+                <td class="no">❌ No</td>
+                <td class="yes">✅ Yes</td>
+                <td class="yes">✅ Yes</td>
+              </tr>
+              <tr>
+                <td>Power BI Pro</td>
+                <td class="no">❌ No</td>
+                <td class="yes">✅ Yes</td>
+                <td class="limited">✅ Yes</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
+
+
+    </div>
+  </section>
+
+  <h2>Power Automate Actions Needed</h2>
+  <div class="section-wrapper">
+    <div class="legend">
+      <div class="legend-item">⚪ Standard / included action</div>
+      <div class="legend-item premium">🟢 Premium action needed</div>
+    </div>
+
+    <div class="cards-grid">
+      <div class="action-card">
+        <span class="tag">SharePoint Trigger</span>
+        <h3>When a file is created</h3>
+        <p>
+          Starts the flow automatically when a new file is uploaded into the SharePoint folder.
+        </p>
+      </div>
+
+      <div class="action-card">
+        <span class="tag">File Action</span>
+        <h3>Get file content</h3>
+        <p>
+          Reads the uploaded file so the flow can process what was submitted.
+        </p>
+      </div>
+
+      <div class="action-card premium-card">
+        <div class="premium-badge">🟢 Premium</div>
+        <span class="tag premium-tag">Azure SQL</span>
+        <h3>Execute SQL query</h3>
+        <p>
+          Checks Azure SQL to see whether the uploaded data already exists in the database.
+        </p>
+      </div>
+
+      <div class="action-card">
+        <span class="tag">Logic</span>
+        <h3>Condition</h3>
+        <p>
+          Decides what happens next. If the record is new, continue. If duplicate, send it elsewhere.
+        </p>
+      </div>
+
+      <div class="action-card premium-card">
+        <div class="premium-badge">🟢 Premium</div>
+        <span class="tag premium-tag">Azure SQL</span>
+        <h3>Insert row into Azure SQL</h3>
+        <p>
+          Adds the clean non-duplicate data into the Azure SQL database.
+        </p>
+      </div>
+
+      <div class="action-card">
+        <span class="tag">SharePoint Action</span>
+        <h3>Move file to PK Duplicates</h3>
+        <p>
+          Moves duplicate files into the PK Duplicates SharePoint folder for review or later handling.
+        </p>
+      </div>
+    </div>
+
+    <h2 style="margin-top: 35px;">Basic Flow Diagram</h2>
+
+    <div class="diagram">
+      <div class="step-box">
+        <div><strong>SharePoint Trigger</strong></div>
+        <span class="step-label">Standard</span>
+      </div>
+
+      <div class="arrow">→</div>
+
+      <div class="step-box">
+        <div><strong>Get File Content</strong></div>
+        <span class="step-label">Standard</span>
+      </div>
+
+      <div class="arrow">→</div>
+
+      <div class="step-box premium-step">
+        <div><strong>Check Azure SQL</strong></div>
+        <span class="step-label premium">Premium</span>
+      </div>
+
+      <div class="arrow">→</div>
+
+      <div class="step-box">
+        <div><strong>Condition</strong></div>
+        <span class="step-label">Standard</span>
+      </div>
+    </div>
+
+    <div class="branch-wrapper">
+      <div class="branch-box branch-success">
+        <strong>Not Duplicate</strong><br>
+        <span style="display:block; margin-top:8px;">Insert row into Azure SQL</span>
+        <span class="step-label premium" style="margin-top:10px;">Premium</span>
+      </div>
+
+      <div class="branch-box branch-duplicate">
+        <strong>Duplicate</strong><br>
+        <span style="display:block; margin-top:8px;">Move file to PK Duplicates</span>
+        <span class="step-label" style="margin-top:10px;">Standard</span>
+      </div>
+    </div>
+
+    <p class="small-note">
+      The green glow shows the actions that rely on Power Automate Premium. Those are the Azure SQL steps needed to check duplicates and insert valid data.
+    </p>
+  </div>
+
+  
+
+</body>
+</html>
